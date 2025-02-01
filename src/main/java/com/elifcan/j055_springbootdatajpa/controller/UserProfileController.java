@@ -2,9 +2,12 @@ package com.elifcan.j055_springbootdatajpa.controller;
 
 import com.elifcan.j055_springbootdatajpa.entity.UserProfile;
 import com.elifcan.j055_springbootdatajpa.service.UserProfileService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user-profile")
@@ -41,5 +44,11 @@ public class UserProfileController {
                 .phone("5554545688")
                 .username("selin")
                 .build());
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<UserProfile>> getAll(){
+        List<UserProfile> allProfiles = userProfileService.getAll();
+        return ResponseEntity.ok(allProfiles);
     }
 }
